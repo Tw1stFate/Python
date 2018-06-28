@@ -32,7 +32,7 @@ def calc(term):
         purpose: This function is the actual calculator and the heart of the application
     """
     
-    # This part is for reading and converting arithmic terms.
+    # This part is for reading and converting arithmetic terms.
     term = term.replace(' ', '')
     term = term.replace('^', '**')
     term = term.replace('=', '')
@@ -44,8 +44,10 @@ def calc(term):
     functions = ['sin', 'cos', 'tan', 'cosh', 'sinh', 'tanh', 'sqrt', 'pi', 'radians', 'e'] 
 
     # This part is for reading and converting function expressions.
+    term = term.lower()
+    
     for function in functions:            
-        if function in term.lower():
+        if function in term:
             withmath = 'math.' + function
             term = term.replace(function, withmath)
 
@@ -57,18 +59,15 @@ def calc(term):
     # here goes to the error cases.
     except ZeroDivisionError:
 
-        print("Can't divide by 0")
-        exit(1) # exit(1) for indicating an error.
+        print("Can't divide by 0.  Please try again.")
 
     except NameError:
 
-        print('Invalid input')
-        exit(1)
+        print('Invalid input.  Please try again')
 
     except AttributeError:
 
-        print('Check usage method')
-        exit(1)
+        print('Please check usage method and try again.')
         
     return term
 
@@ -86,11 +85,12 @@ def result(term):
 def main():
     """
         main-program
-        purpose: handles the user inputs and prints 
-                some informations onto console.
+        purpose: handles user input and prints 
+                 information to the console.
     """
     
-    print("\nScientific Calculator\nEg: sin(rad(90)) + 50% * (sqrt(16)) + round(1.42^2) - 12mod3\nEnter quit to exit")
+    print("\nScientific Calculator\n\nFor Example: sin(rad(90)) + 50% * (sqrt(16)) + round(1.42^2)"+\
+          "- 12mod3\n\nEnter quit to exit")
 
     if sys.version_info.major >= 3:
         while True:
